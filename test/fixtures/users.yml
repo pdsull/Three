@@ -1,0 +1,11 @@
+one:
+  username: MyString
+  email: MyString
+  password: MyString
+  time_zone: MyString
+
+two:
+  username: MyString
+  email: MyString
+  password: MyString
+  time_zone: MyString

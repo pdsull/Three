@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Three</title>
+	<%= stylesheet_link_tag 'style' %>
+	<%= stylesheet_link_tag 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/redmond/jquery-ui.css' %>
+	<%= stylesheet_link_tag 'fullcalendar' %>
+	
+	<%=javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js' %>
+	<%=javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js' %>
+	<%=javascript_include_tag 'fullcalendar' %>
+	<%=javascript_include_tag 'application' %>
+	<%=javascript_include_tag 'rails-jquery' %>
+	
+	<%= csrf_meta_tag %>
+
+	<script type='text/javascript'>
+
+		$(document).ready(function() {
+
+			var date = new Date();
+			var d = date.getDate();
+			var m = date.getMonth();
+			var y = date.getFullYear();
+
+			$('#calendar').fullCalendar({
+				header: {
+					left: 'prev,next today',
+					center: 'title',
+					right: 'month,agendaWeek,agendaDay'
+				},
+				editable: true,
+				defaultView: 'agendaWeek',
+				events: "/events/get_events",
+				height: 680,
+				slotMinutes: 30,
+				
+				
+				eventDrop: function(event, dayDelta, minuteDelta, allDay, reventFunc){
+					moveEvent(event, dayDelta, minuteDelta, allDay);
+				},
+				
+				eventResize: function(event, dayDelta, minuteDelta, revertFunc){
+					resizeEvent(event, dayDelta, minuteDelta);
+				},
+				
+				eventClick: function(event, jsEvent, view){
+					showEventDetails(event);
+				},
+			});
+
+		});
+
+	</script>
+	<style type='text/css'>
+
+		body {
+			margin-top: 40px;
+			text-align: center;
+			font-size: 14px;
+			font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+			}
+
+		#calendar {
+			width: 900px;
+			margin: 0 auto;
+			}
+
+	</style>
+</head>
+<body class="subpage">
+	<div id="nav">
+		<%=link_to "New Event", new_event_path %>
+		<%= link_to "Home", home_index_path %>
+		<%= link_to "Edit Profile", edit_user_path(current_user) %>
+		<%= link_to "Logout", logout_path %>
+		
+		<span class="logo">
+			SPLIT / SCHEDULE
+		</span>
+	</div>
+	
+	<div id="applicationContent">
+		<%= yield %>
+	</div>
+</body>
+</html>

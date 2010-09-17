@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  title: MyString
+  url: MyString
+  starttime: 2010-09-12 21:28:19
+  endtime: 2010-09-12 21:28:19
+  all_day: false
+
+two:
+  title: MyString
+  url: MyString
+  starttime: 2010-09-12 21:28:19
+  endtime: 2010-09-12 21:28:19
+  all_day: false

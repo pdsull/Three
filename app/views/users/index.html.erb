@@ -1,0 +1,29 @@
+<% title "Users" %>
+
+<% if current_user %>
+	<p>Current User: <%= current_user.username %></p>
+<% else -%>
+	<p>Not Logged In</p>
+<% end -%>
+
+<table>
+  <tr>
+    <th>Username</th>
+    <th>Email</th>
+    <th>Password</th>
+    <th>Time Zone</th>
+  </tr>
+  <% for user in @users %>
+    <tr>
+      <td><%= user.username %></td>
+      <td><%= user.email %></td>
+      <td><%= user.password %></td>
+      <td><%= user.time_zone %></td>
+      <td><%= link_to "Show", user %></td>
+      <td><%= link_to "Edit", edit_user_path(user) %></td>
+      <td><%= link_to "Destroy", user, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New User", new_user_path %></p>

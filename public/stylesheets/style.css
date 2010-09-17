@@ -1,0 +1,62 @@
+body{
+  	font-family: Verdana, Helvetica, Arial;
+	font-size: 14px;
+	margin: 0;
+	padding: 0;
+}
+
+#loading{
+  position: absolute; 
+  right: 0px; 
+  top: 0px; 
+  background-color: #dd0000; 
+  font-weight:bold;
+  color: white; 
+  margin: 5px; 
+  padding: 3px;
+}
+
+span > div#loading {
+  position: fixed;
+}
+
+h1{
+font-size: 16px;
+}
+
+#applicationContent {
+	width: 1150px;
+	margin: 10px;
+}
+
+#appLeftContent{
+	float: left;
+	width: 330px;
+	clear: both;
+	font-size: 12px;
+	text-align: left;
+}
+
+#appRightContent {
+	width: 800px;
+	float: right;
+}
+
+span.logo {
+	color: #fff;
+	font-weight: bold;
+	float: right;
+}
+
+#nav {
+	background-color: #4B7399;
+	padding: 20px;
+	border-bottom: 1px solid #333;
+}
+
+#nav a {
+	color: #fff;
+	font-weight: bold;
+	text-decoration: none;
+	padding-right: 30px;
+}

@@ -1,0 +1,39 @@
+<%= form_for @event do |f| %>
+  <% if @event.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
+
+      <ul>
+      <% @event.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :event_date %><br />
+    <div id="datepicker"></div>
+	<%= f.hidden_field :event_date %>
+  </p>
+  <p>
+    <div id="slider-range" style="width: 500px"></div>
+	<br /><br />
+	<span id="time"></span>
+	<%= f.hidden_field :start_time %>
+	<%= f.hidden_field :end_time %>
+  </p>
+	
+  <p>
+    <%= f.check_box :all_day %> <%= f.label :all_day %>
+  </p>
+	<%= f.hidden_field :family_id, :value => current_user.family.id %>
+	<%= f.hidden_field :user_id, :value => current_user.id %>
+  <p
+    <%= f.submit %>
+  </p>
+<% end %>

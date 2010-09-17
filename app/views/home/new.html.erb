@@ -1,0 +1,53 @@
+<h1>New event</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Back', events_path %>
+
+<script type="text/javascript">
+
+	$("#datepicker").datepicker({ altField: '#event_event_date' });
+
+		
+    $("#slider-range").slider({
+        range: true,
+        min: 0,
+        max: 1439,
+        values: [540, 1020],
+        step:15,
+		slide: slideTime
+    });
+
+	function slideTime(event, ui){
+	    var minutes0 = parseInt($("#slider-range").slider("values", 0) % 60);
+	    var hours0 = parseInt($("#slider-range").slider("values", 0) / 60 % 24);
+	    var minutes1 = parseInt($("#slider-range").slider("values", 1) % 60);
+	    var hours1 = parseInt($("#slider-range").slider("values", 1) / 60 % 24);
+	    $("#time").text(getTime(hours0, minutes0) + ' - ' + getTime(hours1, minutes1));
+		$("#event_start_time").val(getTime(hours0, minutes0));
+		$("#event_end_time").val(getTime(hours1, minutes1));
+	}
+
+	function getTime(hours, minutes) {
+	    var time = null;
+	    minutes = minutes + "";
+	    if (hours < 12) {
+	        time = "AM";
+	    }
+	    else {
+	        time = "PM";
+	    }
+	    if (hours == 0) {
+	        hours = 12;
+	    }
+	    if (hours > 12) {
+	        hours = hours - 12;
+	    }
+	    if (minutes.length == 1) {
+	        minutes = "0" + minutes;
+	    }
+	    return hours + ":" + minutes + " " + time;
+	}
+	slideTime();
+	
+</script>

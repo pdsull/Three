@@ -1,41 +1,34 @@
 class EventsController < ApplicationController
   
+  before_filter :require_user
+  
   # GET /events
   # GET /events.xml
   def index
-    @events = Event.all
+    @events = current_user.family.events
     @event = Event.new
+    @recent_events = Event.find(:all,
+                                :limit => 5,
+                                :order => "created_at DESC",
+                                :conditions => ["family_id = ?", current_user.family_id])
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @events }
-    end
   end
 
   # GET /events/1
   # GET /events/1.xml
   def show
     @event = Event.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @event }
-    end
   end
 
   # GET /events/new
   # GET /events/new.xml
   def new
     @event = Event.new
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @event }
-    end
   end
 
   # GET /events/1/edit
   def edit
-    @event = Event.find(params[:id])
+    @edit_event = Event.find(params[:id])
   end
 
   # POST /events
@@ -59,7 +52,13 @@ class EventsController < ApplicationController
   # PUT /events/1
   # PUT /events/1.xml
   def update
-    
+    @event = Event.find(params[:id])
+    if @event.update_attributes(params[:event])
+      @event.set_time
+      @event.save
+      flash[:notice] = "Event Successfully Updated"
+      redirect_to events_path
+    end
   end
 
   # DELETE /events/1
@@ -75,7 +74,8 @@ class EventsController < ApplicationController
   end
   
   def get_events
-    @events = Event.find(:all)
+    @events = current_user.family.events.find(:all, :conditions => ["starttime >= '#{Time.zone.at(params['start'].to_i).to_s(:db)}' and starttime <= '#{Time.zone.at(params['end'].to_i).to_s(:db)}'"] )
+    
     events = [] 
     @events.each do |event|
       events << {:id => event.id, :title => event.title, :start => "#{event.starttime.iso8601}", :end => "#{event.endtime.iso8601}", :allDay => event.all_day, :className => event.className}

@@ -1,0 +1,5 @@
+$("#starting_content").hide()
+$("#new_event").hide()
+$("#edit_event").hide()
+$("#show_event").show()
+$("#show_event").html("<%= escape_javascript( render(:partial => "show") ) %>");

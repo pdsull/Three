@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
   
   layout 'nifty'
+  before_filter :require_user
   
   def index
     
@@ -13,6 +14,10 @@ class HomeController < ApplicationController
   def create
     @event = Event.new(params[:event])
     render :index
+  end
+  
+  def show
+    @event = Event.find(params[:id])
   end
   
   

@@ -1,6 +1,7 @@
 class MembersController < ApplicationController
   
   layout 'nifty'
+  before_filter :require_user
   
   def index
     @members = Member.all
@@ -39,7 +40,7 @@ class MembersController < ApplicationController
     @member = Member.find(params[:id])
     @member.destroy
     flash[:notice] = "Successfully destroyed family member."
-    redirect_to members_path
+    redirect_to events_path
   end
   
   def show

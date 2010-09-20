@@ -1,7 +1,29 @@
 <div id = "appLeftContent">
-	<div id="new_event">
-		<%= render :partial => 'form' %>
+	
+	<div id="starting_content">
+		<div id="recently_added">
+			<h2>Recently Added Events</h2>
+			<%= render :partial => 'recently_added' %>
+		</div>
+		
+		<div id="family_members">
+			<h2>Family Members</h2>
+			<div id="members_list">
+				<%= render :partial => 'members' %>
+			</div>
+			<%= render :partial => 'new_member'%>
+		</div>
 	</div>
+	
+	<div id="new_event">
+	</div>
+	
+	<div id="show_event">
+	</div>
+	
+	<div id="edit_event">
+	</div>
+	
 </div>
 
 <div id = "appRightContent">

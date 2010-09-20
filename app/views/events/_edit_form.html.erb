@@ -1,10 +1,10 @@
-<%= form_for @event do |f| %>
-  <% if @event.errors.any? %>
+<%= form_for @edit_event do |f| %>
+  <% if @edit_event.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
+      <h2><%= pluralize(@edit_event.errors.count, "error") %> prohibited this event from being saved:</h2>
 
       <ul>
-      <% @event.errors.full_messages.each do |msg| %>
+      <% @edit_event.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
@@ -16,15 +16,16 @@
     <%= f.text_field :title %>
   </p>
   <p>
-    <%= f.label :event_date %><br />
+    <%= f.label :event_date %>:<br />
     <div id="datepicker"></div>
 	<%= f.hidden_field :event_date %>
   </p>
   <p>
-	<%= f.label :start_time, "Length of Event" %><br />
+	<%= f.label :start_time, "Length of Event" %>:<br />
+	<span id="time"></span><br />
     <div id="slider-range" style="width: 300px"></div>
 	<br /><br />
-	<span id="time"></span>
+	
 	<%= f.hidden_field :start_time %>
 	<%= f.hidden_field :end_time %>
 	<%= f.hidden_field :family_id, :value => current_user.family_id %>
@@ -37,7 +38,7 @@
 	<p>
 		<%= f.label :members, "Who Is Attending?" %><br />
 		<% current_user.family.members.each do |m| %>
-			<%= check_box_tag "event[member_ids][]", m.id, @event.members.include?(m) %>
+			<%= check_box_tag "event[member_ids][]", m.id, @edit_event.members.include?(m) %>
 			<%= m.name %><br />
 		<% end -%>
 	</p>
@@ -49,17 +50,31 @@
   </p>
 <% end %>
 
+<% 
+@year = @edit_event.starttime.strftime("%Y") 
+@month = (@edit_event.starttime.strftime("%m").to_i - 1) # Because javascript date is weird
+@day = @edit_event.starttime.strftime("%d")
+
+@start_time = ((@edit_event.starttime.strftime("%H").to_i * 60) + @edit_event.starttime.strftime("%M").to_i)
+
+@end_time = ((@edit_event.endtime.strftime("%H").to_i * 60) + @edit_event.endtime.strftime("%M").to_i)
+
+
+%>
 
 <script type="text/javascript">
 
-	$("#datepicker").datepicker({ altField: '#event_event_date' });
+	$("#datepicker").datepicker({ 
+		altField: '#event_event_date',
+		defaultDate: new Date(<%= @year %>, <%= @month %>, <%= @day %>)
+	});
 
 		
     $("#slider-range").slider({
         range: true,
         min: 0,
         max: 1439,
-        values: [540, 1020],
+        values: [<%= @start_time %>, <%= @end_time %>],
         step:15,
 		slide: slideTime
     });

@@ -1,0 +1,8 @@
+<%= form_for Member.new, :remote => true do |f| %>
+	<%= f.error_messages %>
+	<p><%= f.label :name %>:
+		<%= f.text_field :name %>
+	</p>
+	<%= f.hidden_field :family_id, :value => current_user.family_id %>
+	<p><%=f.submit%></p>
+<% end -%>

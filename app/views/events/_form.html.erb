@@ -22,16 +22,25 @@
   </p>
   <p>
 	<%= f.label :start_time, "Length of Event" %><br />
-    <div id="slider-range" style="width: 300px"></div>
-	<br /><br />
 	<span id="time"></span>
+    <div id="slider-range" style="width: 300px"></div>
 	<%= f.hidden_field :start_time %>
 	<%= f.hidden_field :end_time %>
+	<%= f.hidden_field :family_id, :value => current_user.family_id %>
+	<%= f.hidden_field :className, :value => current_user.class_name %>
   </p>
 	
   <p>
     <%= f.check_box :all_day %> <%= f.label :all_day %>
   </p>
+	<p>
+		<%= f.label :members, "Who Is Attending?" %><br />
+		<% current_user.family.members.each do |m| %>
+			<%= check_box_tag "event[member_ids][]", m.id, @event.members.include?(m) %>
+			<%= m.name %><br />
+		<% end -%>
+	</p>
+	
 	<%= f.hidden_field :family_id, :value => current_user.family.id %>
 	<%= f.hidden_field :user_id, :value => current_user.id %>
   <p

@@ -8,6 +8,7 @@ Three::Application.routes.draw do
     collection do
       get :index
       get :hide_one
+      get :show
     end
   end
 
@@ -17,8 +18,10 @@ Three::Application.routes.draw do
       post :resize
       post :move
     end
+    get :show
   end
   
+  match 'events/show/:id', :to => 'events#show'
   match 'events/get_events', :to => 'events#getevents'
   match 'login', :to => 'user_sessions#new'
   match 'logout', :to => 'user_sessions#destroy'

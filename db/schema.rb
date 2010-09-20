@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100916031424) do
+ActiveRecord::Schema.define(:version => 20100918194039) do
 
   create_table "events", :force => true do |t|
     t.string   "title"
@@ -24,6 +24,14 @@ ActiveRecord::Schema.define(:version => 20100916031424) do
     t.string   "class_name"
     t.string   "className"
   end
+
+  create_table "events_members", :id => false, :force => true do |t|
+    t.integer "event_id"
+    t.integer "member_id"
+  end
+
+  add_index "events_members", ["event_id", "member_id"], :name => "index_events_members_on_event_id_and_member_id"
+  add_index "events_members", ["member_id"], :name => "index_events_members_on_member_id"
 
   create_table "families", :force => true do |t|
     t.string   "name"

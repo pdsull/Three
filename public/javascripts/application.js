@@ -20,7 +20,11 @@ function resizeEvent(event, dayDelta, minuteDelta){
 }
 
 function showEventDetails(event){
-    
+    jQuery.ajax({
+		dataType: 'script',
+		type: 'get',
+		url: "/events/show/" + event.id
+	});
 }
 
 
@@ -40,33 +44,4 @@ function deleteEvent(event_id, delete_all){
         type: 'post',
         url: "/events/destroy"
     });
-}
-
-function showPeriodAndFrequency(value){
-
-    switch (value) {
-        case 'Daily':
-            $('#period').html('day');
-            $('#frequency').show();
-            break;
-        case 'Weekly':
-            $('#period').html('week');
-            $('#frequency').show();
-            break;
-        case 'Monthly':
-            $('#period').html('month');
-            $('#frequency').show();
-            break;
-        case 'Yearly':
-            $('#period').html('year');
-            $('#frequency').show();
-            break;
-            
-        default:
-            $('#frequency').hide();
-    }
-    
-    
-    
-    
 }

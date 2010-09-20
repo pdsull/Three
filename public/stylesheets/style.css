@@ -2,6 +2,7 @@ body{
   	font-family: Verdana, Helvetica, Arial;
 	font-size: 14px;
 	margin: 0;
+	margin-top: 0;
 	padding: 0;
 }
 
@@ -25,13 +26,13 @@ font-size: 16px;
 }
 
 #applicationContent {
-	width: 1150px;
+	width: 1100px;
 	margin: 10px;
 }
 
 #appLeftContent{
 	float: left;
-	width: 330px;
+	width: 270px;
 	clear: both;
 	font-size: 12px;
 	text-align: left;
@@ -59,4 +60,9 @@ span.logo {
 	font-weight: bold;
 	text-decoration: none;
 	padding-right: 30px;
+}
+
+#calendar {
+	width: 800px;
+	margin: 0 auto;
 }

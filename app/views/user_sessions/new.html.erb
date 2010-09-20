@@ -1,16 +1,16 @@
 <% title "Log in" %>
 
-<% form_for @user_session do |f| %>
+<%= form_for @user_session do |f| %>
   <%= f.error_messages %>
   <p>
-    <%= f.label :username %><br />
-    <%= f.text_field :username %>
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
   </p>
   <p>
     <%= f.label :password %><br />
     <%= f.password_field :password %>
   </p>
-  <p><%= f.submit %></p>
+  <p><%= f.submit "Log In" %></p>
 <% end %>
 
 

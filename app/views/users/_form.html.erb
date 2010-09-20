@@ -1,11 +1,11 @@
 <%= form_for @user do |f| %>
   <%= f.error_messages %>
   <p>
-    <%= f.label :username %><br />
+    <%= f.label :username, "Your Name:" %><br />
     <%= f.text_field :username %>
   </p>
   <p>
-    <%= f.label :email %><br />
+    <%= f.label :email, "Your Email Address:" %><br />
     <%= f.text_field :email %>
   </p>
   <p>
@@ -20,5 +20,18 @@
     <%= f.label :time_zone %><br />
     <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, :default => "Mountain Time (US & Canada)" %>
   </p>
-  <p><%= f.submit %></p>
+
+	<% unless params[:action == "edit"] %>
+	<hr />
+	<p>
+		<%= f.label :second_user_name, "Your Co-Parent's Name:" %><br />
+		<%= text_field "user", :second_user_name %>
+	</p>
+	<p>
+		<%= f.label :second_user_email, "Your Co-Parent's Email Address:" %><br />
+		<%= text_field "user", :second_user_email %>
+	</p>
+	<% end -%>
+
+  <p><%= f.submit "Register New Account" %></p>
 <% end %>

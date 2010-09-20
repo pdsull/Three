@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   
   layout 'nifty'
+  before_filter :require_user, :except => [ :new, :create ]
+  before_filter :require_no_user, :only => [ :new, :create ]
   
   def index
     @users = User.all
@@ -15,8 +17,17 @@ class UsersController < ApplicationController
   end
   
   def create
-    @user = User.new(params[:user])
     @family = Family.create
+    
+    @user2 = User.new
+    @user2.family_id = @family.id
+    @user2.className = "momEvent"
+    @user2.email = params[:user][:second_user_email]
+    @user2.password = "god8you"
+    @user2.password_confirmation = "god8you"
+    @user2.username = params[:user][:second_user_name]
+    
+    @user = User.new(params[:user])
     @user.family_id = @family.id
     if @user.save
       flash[:notice] = "Successfully created user."

@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @event.title %>
+</p>
+
+<p>
+	<strong>Date:</strong>
+	<%= @event.starttime.strftime("%B %d, %Y")%>
+</p>
+
+<% if @event.all_day == false %>
+	<p>
+		<b>Begins:</b>
+		<%= @event.starttime.strftime("%I:%M %p") %>
+	</p>
+
+	<p>
+	  <b>Ends:</b>
+	  <%= @event.endtime.strftime("%I:%M %p") %>
+	</p>
+<% else -%>
+	<p>
+		<b>An All Day Event</b>
+	</p>
+<% end -%>
+
+<p>
+	<strong>Attending:</strong><br />
+	<% @event.members.each do |m| %>
+		<%= m.name %><br />
+	<% end -%>
+</p>
+
+
+<%= link_to 'Edit', edit_event_path(@event), :remote => true %> | 
+<%= link_to "Delete", @event, :confirm => 'Are you sure?', :method => :delete %>

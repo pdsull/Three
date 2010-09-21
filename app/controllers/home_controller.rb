@@ -1,10 +1,11 @@
 class HomeController < ApplicationController
   
-  layout 'nifty'
+  layout 'profi'
   before_filter :require_user
   
   def index
-    
+    @events = current_user.family.events
+    @event = Event.new
   end
   
   def new

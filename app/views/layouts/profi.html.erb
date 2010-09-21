@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Split Schedule | Scheduling for Co-Parents</title>
+	<%= stylesheet_link_tag 'profi/960.css' %>
+	<%= stylesheet_link_tag 'profi/reset.css' %>
+	<%= stylesheet_link_tag 'profi/text.css' %>
+	<%= stylesheet_link_tag 'profi/blue.css'%>
+	<%= stylesheet_link_tag 'profi/smoothness/ui.css' %>
+	<%= stylesheet_link_tag	'fullcalendar.css' %>
+
+	<%=javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js' %>
+	<%=javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js' %>
+	<%=javascript_include_tag 'profi-fullcalendar' %>
+	<%=javascript_include_tag 'application' %>
+	<%=javascript_include_tag 'rails-jquery' %>
+	<%=javascript_include_tag 'effects'%>
+	<%=javascript_include_tag 'blend/jquery.blend'%>
+
+	<%= csrf_meta_tag %>
+	
+    <!--[if IE]>
+    <script language="javascript" type="text/javascript" src="js/flot/excanvas.pack.js"></script>
+    <![endif]-->
+	<!--[if IE 6]>
+	<link rel="stylesheet" type="text/css" href="css/iefix.css" />
+	<script src="js/pngfix.js"></script>
+    <script>
+        DD_belatedPNG.fix('#menu ul li a span span');
+    </script>        
+    <![endif]-->
+	<script type='text/javascript'>
+
+		$(document).ready(function() {
+
+			var date = new Date();
+			var d = date.getDate();
+			var m = date.getMonth();
+			var y = date.getFullYear();
+
+			$('#calendar').fullCalendar({
+				header: {
+					left: 'prev,next today',
+					center: 'title',
+					right: 'month,agendaWeek,agendaDay'
+				},
+				editable: true,
+				defaultView: 'agendaWeek',
+				events: "/events/get_events",
+				height: 493,
+				slotMinutes: 30,
+				
+				
+				eventDrop: function(event, dayDelta, minuteDelta, allDay, reventFunc){
+					moveEvent(event, dayDelta, minuteDelta, allDay);
+				},
+				
+				eventResize: function(event, dayDelta, minuteDelta, revertFunc){
+					resizeEvent(event, dayDelta, minuteDelta);
+				},
+				
+				eventClick: function(event, jsEvent, view){
+					showEventDetails(event);
+				},
+			});
+
+		});
+
+	</script>
+</head>
+
+<body>
+<!-- WRAPPER START -->
+<div class="container_16" id="wrapper">	
+<!-- HIDDEN COLOR CHANGER -->      
+
+  	<!--LOGO-->
+	<div class="grid_8" id="logo"><img src="/images/sslogo.png" height = "50"><a href="http://www.splitschedule.com" style="color: #FFFFFF">Split Schedule</a></div>
+    <div class="grid_8">
+<!-- USER TOOLS START -->
+      <div id="user_tools"><span><a href="#" class="mail"></a> Welcome <%= link_to current_user.username, edit_user_path(current_user)%>  |  <a href="#"><%= link_to "Log Out", logout_path %></a></span></div>
+    </div>
+<!-- USER TOOLS END -->    
+<div class="grid_16" id="header">
+<!-- MENU START -->
+	<div id="menu">
+		<ul class="group" id="menu_group_main">
+			<li class="item first" id="one">
+				<a href="#" class="main">
+					<span class="outer">
+						<span class="inner dashboard">Home</span>
+					</span>
+				</a>
+			</li>
+			<li class="item middle" id="two">
+				<a href="#" class="main current">
+					<span class="outer">
+						<span class="inner event_manager">Calendar</span>
+					</span>
+				</a>
+			</li>   
+	        <li class="item middle" id="three">
+				<a href="#" class="main">
+					<span class="outer">
+						<span class="inner content new_form">New Event</span>
+					</span>
+				</a>
+			</li>
+	        <li class="item middle" id="four">
+				<a href="#" class="main">
+					<span class="outer">
+						<span class="inner users">Preferences</span>
+					</span>
+				</a>
+			</li>            
+			<li class="item last" id="five">
+				<a href="#" class="main">
+					<span class="outer">
+						<span class="inner newsletter">Journal</span>
+					</span>
+				</a>
+			</li>            
+	    </ul>
+	</div>
+<!-- MENU END -->
+</div>
+<!-- CONTENT START -->
+<div class="grid_16" id="content">
+
+	<%= yield %>
+
+	<div class="clear"> </div>
+</div>
+<!-- WRAPPER END -->
+<!-- FOOTER START -->
+<div class="container_16" id="footer">
+	&copy; Split Schedule 2010 | <%= link_to "TOS", events_path %>
+</div>
+<!-- FOOTER END -->
+</body>
+</html>

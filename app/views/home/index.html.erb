@@ -1,118 +1,25 @@
-<% title 'Editing an Event' %>
-
-<% @event = Event.find(9) %>
-
-<%= form_for @event do |f| %>
-  <% if @event.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
-
-      <ul>
-      <% @event.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <p>
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </p>
-  <p>
-    <%= f.label :event_date %>:<br />
-    <div id="datepicker"></div>
-	<%= f.hidden_field :event_date %>
-  </p>
-  <p>
-	<%= f.label :start_time, "Length of Event" %>:<br />
-	<span id="time"></span><br />
-    <div id="slider-range" style="width: 300px"></div>
-	<br /><br />
-	
-	<%= f.hidden_field :start_time %>
-	<%= f.hidden_field :end_time %>
-	<%= f.hidden_field :family_id, :value => current_user.family_id %>
-	<%= f.hidden_field :className, :value => current_user.class_name %>
-  </p>
-	
-  <p>
-    <%= f.check_box :all_day %> <%= f.label :all_day %>
-  </p>
-	<p>
-		<%= f.label :members, "Who Is Attending?" %><br />
-		<% current_user.family.members.each do |m| %>
-			<%= check_box_tag "event[member_ids][]", m.id, @event.members.include?(m) %>
-			<%= m.name %><br />
-		<% end -%>
-	</p>
-	
-	<%= f.hidden_field :family_id, :value => current_user.family.id %>
-	<%= f.hidden_field :user_id, :value => current_user.id %>
-  <p
-    <%= f.submit %>
-  </p>
-<% end %>
-
-<% 
-@year = @event.starttime.strftime("%Y") 
-@month = (@event.starttime.strftime("%m").to_i - 1) # Because javascript date is weird
-@day = @event.starttime.strftime("%d")
-
-@start_time = ((@event.starttime.strftime("%H").to_i * 60) + @event.starttime.strftime("%M").to_i)
-
-@end_time = ((@event.endtime.strftime("%H").to_i * 60) + @event.endtime.strftime("%M").to_i)
+<!-- #PORTLETS START -->
+<div id="portlets">  
+	<!--THIS IS A PORTLET-->
+	<div class="portlet form" style="display: none">
+		<div class="portlet-content">
+			<%= render :partial => 'form' %>
+			
+			<p>&nbsp;</p>
+		</div>
+	</div>
 
 
-%>
-
-<script type="text/javascript">
-
-	$("#datepicker").datepicker({ 
-		altField: '#event_event_date',
-		defaultDate: new Date(<%= @year %>, <%= @month %>, <%= @day %>)
-	});
-
-		
-    $("#slider-range").slider({
-        range: true,
-        min: 0,
-        max: 1439,
-        values: [<%= @start_time %>, <%= @end_time %>],
-        step:15,
-		slide: slideTime
-    });
-
-	function slideTime(event, ui){
-	    var minutes0 = parseInt($("#slider-range").slider("values", 0) % 60);
-	    var hours0 = parseInt($("#slider-range").slider("values", 0) / 60 % 24);
-	    var minutes1 = parseInt($("#slider-range").slider("values", 1) % 60);
-	    var hours1 = parseInt($("#slider-range").slider("values", 1) / 60 % 24);
-	    $("#time").text(getTime(hours0, minutes0) + ' - ' + getTime(hours1, minutes1));
-		$("#event_start_time").val(getTime(hours0, minutes0));
-		$("#event_end_time").val(getTime(hours1, minutes1));
-	}
-
-	function getTime(hours, minutes) {
-	    var time = null;
-	    minutes = minutes + "";
-	    if (hours < 12) {
-	        time = "AM";
-	    }
-	    else {
-	        time = "PM";
-	    }
-	    if (hours == 0) {
-	        hours = 12;
-	    }
-	    if (hours > 12) {
-	        hours = hours - 12;
-	    }
-	    if (minutes.length == 1) {
-	        minutes = "0" + minutes;
-	    }
-	    return hours + ":" + minutes + " " + time;
-	}
-	slideTime();
-	
-</script>
+	<!--THIS IS A PORTLET-->        
+	<div class="portlet">
+		<div class="portlet-content">
+			<div id='calendar' style="width:auto"></div>
+		</div>
+	</div>    
+	<div class="clear"></div>
+		<!--THIS IS A WIDE PORTLET-->
+		<!--  END #PORTLETS -->  
+	</div>
+	<div class="clear"> </div>
+	<!-- END CONTENT-->    
+</div>

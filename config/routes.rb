@@ -1,5 +1,7 @@
 Three::Application.routes.draw do
 
+  resources :entries
+
   resources :user_sessions
   resources :users
   resources :members

@@ -1,0 +1,21 @@
+<% title "Entries" %>
+
+<table>
+  <tr>
+    <th>Event</th>
+    <th>User</th>
+    <th>Description</th>
+  </tr>
+  <% for entry in @entries %>
+    <tr>
+      <td><%= entry.event_id %></td>
+      <td><%= entry.user_id %></td>
+      <td><%= entry.description %></td>
+      <td><%= link_to "Show", entry %></td>
+      <td><%= link_to "Edit", edit_entry_path(entry) %></td>
+      <td><%= link_to "Destroy", entry, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Entry", new_entry_path %></p>

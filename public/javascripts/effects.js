@@ -6,8 +6,8 @@ var b_version=navigator.appVersion;
 var version=parseFloat(b_version);
 
 // Paul's Stuff
-$(".form").click(function() {
-	$(this).slideUp("slow");					 	  
+$("#close").click(function() {
+	$(".form").slideUp("slow");					 	  
 });
 
 $(".new_form").click(function() {

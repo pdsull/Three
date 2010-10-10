@@ -87,37 +87,30 @@
 	<div id="menu">
 		<ul class="group" id="menu_group_main">
 			<li class="item first" id="one">
-				<a href="#" class="main">
-					<span class="outer">
-						<span class="inner dashboard">Home</span>
-					</span>
-				</a>
-			</li>
-			<li class="item middle" id="two">
-				<a href="#" class="main current">
+				<a href="/events" class="main">
 					<span class="outer">
 						<span class="inner event_manager">Calendar</span>
 					</span>
 				</a>
 			</li>   
-	        <li class="item middle" id="three">
+	        <li class="item middle" id="two">
 				<a href="#" class="main">
 					<span class="outer">
 						<span class="inner content new_form">New Event</span>
 					</span>
 				</a>
 			</li>
-	        <li class="item middle" id="four">
-				<a href="#" class="main">
+	        <li class="item middle" id="three">
+				<a href="<%= edit_user_path(current_user) %>" class="main">
 					<span class="outer">
-						<span class="inner users">Preferences</span>
+						<span class="inner users">Settings</span>
 					</span>
 				</a>
 			</li>            
-			<li class="item last" id="five">
-				<a href="#" class="main">
+			<li class="item last" id="four">
+				<a href="/entries" class="main">
 					<span class="outer">
-						<span class="inner newsletter">Journal</span>
+						<span class="inner newsletter">Journal</span></a>
 					</span>
 				</a>
 			</li>            

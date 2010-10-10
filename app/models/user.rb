@@ -7,4 +7,5 @@ class User < ActiveRecord::Base
   end
   
   belongs_to :family
+  has_many :entries
 end

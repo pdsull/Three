@@ -1,0 +1,63 @@
+/* infinite carousel needs some fixing */
+#portfolio-carousel .wrapper {   position: relative; overflow:hidden; }
+#portfolio-carousel .wrapper ul {   position: relative; overflow:hidden; }
+#portfolio-carousel .arrow {  top:-37px; }
+
+/* filterable portfolio hard limits on width */
+ul#portfolio-filter {  height:17px; padding-top:10px; padding-bottom:10px; padding-left:30px; }
+ul#portfolio-list {  width:910px; overflow:hidden; }
+ul#portfolio-list li { background:transparent; }
+ul#portfolio-list li a {  overflow: hidden; }
+
+/* center inner page title vertically automaticly */
+.heading-inner .outer-vert-title {  position: relative;  }
+.heading-inner .inner-vert-title {  position: absolute; top: 50%;  }
+.heading-inner .vert-position-title {  position: relative; top: -50% }
+
+/* center inner page description vertically automaticly */
+.heading-inner .outer-vert-description {  position: relative;  }
+.heading-inner .inner-vert-description {  position: absolute; top: 50%;  }
+.heading-inner .vert-position-description {  position: relative; top: -50% }
+
+ /* center post image text overlay  vertically automaticly */
+.post-image-overlay .outer-vert { position: relative;}
+.post-image-overlay .inner-vert { position: absolute; top: 50%; }
+.post-image-overlay .vert-position {  position: relative; top: -50% }
+
+/* forced overflow limit for ie7 */
+.homepage-icons ul.imagelist-half .text p { height:60px; overflow:hidden; }
+
+/* main list overrides a bit different as ie6 */
+.main ol { margin-left: 5px; padding-left:20px; margin-bottom: 20px; }
+.main ul { margin-left: 0px; padding-left:10px; margin-bottom: 20px; }
+.main ul { list-style: none;  }
+.main ul li { margin-left:0px; padding-left:20px; background: url(images/bullet.jpg) no-repeat; background-position:0px 8px; }
+
+ul.imagelist-half { list-style:none !important; margin-left:0px !important;  padding-left:0px !important; }
+ul.imagelist-half  li { background:transparent !important; margin-left:0px !important; padding-left:0px !important;  }
+ul.checklist li { background: url(images/check.jpg) no-repeat; background-position:0px 2px; padding-left:25px; }
+
+form { margin:0px; padding:0px; }
+form ol { margin-left:0px !important; padding-left:0px !important; }
+form ol li { margin-left:0px !important; padding-left:0px !important; }
+
+.plan {  width:188px; overflow:hidden; margin-bottom:0px; }
+
+/* we dont want these to fly outside */
+#content .onehalf,
+#content .onehalf-last { overflow:hidden;}
+
+#content .onethird,
+#content .onethird-last { overflow:hidden; }
+
+#content .onefourth,
+#content .onefourth-last { overflow:hidden; }
+
+#content-wide .onefourth,
+#content-wide .onefourth-last { overflow:hidden; }
+
+#content-wide .onethird,
+#content-wide .onethird-last {  overflow:hidden;  }
+
+#content-wide .onehalf,
+#content-wide .onehalf-last { overflow:hidden;  }

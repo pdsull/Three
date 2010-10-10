@@ -1,0 +1,8 @@
+/*
+    Symplex Template  1.2
+*/
+
+@import "gui/reset.css";
+@import "gui/style.css";
+
+@import "gui/enhance.css"; /* if you want border radius on some of the elements */

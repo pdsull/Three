@@ -1,10 +1,13 @@
 Three::Application.routes.draw do
 
   resources :entries
+  match 'journal', :to => 'journal#index'
+  match 'journal/:id', :to => 'journal#show'
 
   resources :user_sessions
   resources :users
   resources :members
+  resources :notes
   
   resources :home do
     collection do
@@ -23,6 +26,7 @@ Three::Application.routes.draw do
     get :show
   end
   
+  match 'register', :to => 'users#new'
   match 'events/show/:id', :to => 'events#show'
   match 'events/get_events', :to => 'events#getevents'
   match 'login', :to => 'user_sessions#new'

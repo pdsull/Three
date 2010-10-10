@@ -11,40 +11,37 @@
     </div>
   <% end %>
 
-  <p>
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </p>
-  <p>
-    <%= f.label :event_date %><br />
-    <div id="datepicker"></div>
-	<%= f.hidden_field :event_date %>
-  </p>
-  <p>
-	<%= f.label :start_time, "Length of Event" %><br />
-	<span id="time"></span>
-    <div id="slider-range" style="width: 300px"></div>
-	<%= f.hidden_field :start_time %>
-	<%= f.hidden_field :end_time %>
-	<%= f.hidden_field :family_id, :value => current_user.family_id %>
-	<%= f.hidden_field :className, :value => current_user.class_name %>
-  </p>
+	<div id="new_event" style="display: true">
+		<h1>New Event</h1> <span id="close" style="float:right">[ X ] CANCEL</span>
+
+		<p>Name of Event: 
+		<%= f.text_field :title %>
+		</p>
 	
-  <p>
-    <%= f.check_box :all_day %> <%= f.label :all_day %>
-  </p>
-	<p>
-		<%= f.label :members, "Who Is Attending?" %><br />
-		<% current_user.family.members.each do |m| %>
-			<%= check_box_tag "event[member_ids][]", m.id, @event.members.include?(m) %>
-			<%= m.name %><br />
-		<% end -%>
-	</p>
+		<p>Event Date:
+		<div id="datepicker"></div>
+		<%= f.hidden_field :event_date %>
+		</p>
 	
-	<%= f.hidden_field :family_id, :value => current_user.family.id %>
-	<%= f.hidden_field :user_id, :value => current_user.id %>
-  <p
-    <%= f.submit %>
+		<p><%= f.check_box :all_day %> All Day</p>
+
+		<p>Length of Event:
+		<div id="slider-range" style="width: 300px"></div>
+		<br />
+		<span id="time"></span>
+		<%= f.hidden_field :start_time %>
+		<%= f.hidden_field :end_time %>
+		<%= f.hidden_field :family_id, :value => current_user.family_id %>
+		<%= f.hidden_field :className, :value => current_user.class_name %>
+		</p>
+	
+		<%= f.hidden_field :family_id, :value => current_user.family.id %>
+		<%= f.hidden_field :user_id, :value => current_user.id %>
+		<p><%= f.submit %></p>
+
+	</div>
+	
+	
   </p>
 <% end %>
 

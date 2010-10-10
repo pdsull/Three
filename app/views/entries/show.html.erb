@@ -1,16 +1,16 @@
+<!-- #PORTLETS START -->
+<div id="portlets">  
+	<!--THIS IS A PORTLET-->
+	<div class="portlet">
+		<div class="portlet-content">
+			<h1>Journal Entry</h1>
 <% title "Entry" %>
+<p>
+	<%= @entry.created_at.strftime("%m/%d/%Y") %>
+</p>
 
 <p>
-  <strong>Event:</strong>
-  <%= @entry.event_id %>
-</p>
-<p>
-  <strong>User:</strong>
-  <%= @entry.user_id %>
-</p>
-<p>
-  <strong>Description:</strong>
-  <%= @entry.description %>
+  <%= simple_format(@entry.description) %>
 </p>
 
 <p>
@@ -18,3 +18,16 @@
   <%= link_to "Destroy", @entry, :confirm => 'Are you sure?', :method => :delete %> |
   <%= link_to "View All", entries_path %>
 </p>
+
+
+</div>
+</div>
+
+
+<div class="clear"></div>
+<!--THIS IS A WIDE PORTLET-->
+<!--  END #PORTLETS -->  
+</div>
+<div class="clear"> </div>
+<!-- END CONTENT-->    
+</div>

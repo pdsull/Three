@@ -3,7 +3,7 @@ class EntriesController < ApplicationController
   layout 'profi'
 
   def index
-    @entries = Entry.all
+    @entries = current_user.family.entries
   end
   
   def show

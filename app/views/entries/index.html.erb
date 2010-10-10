@@ -1,21 +1,24 @@
-<% title "Entries" %>
+<!-- #PORTLETS START -->
+<div id="portlets">  
+	<!--THIS IS A PORTLET-->
+	<div class="portlet">
+		<div class="portlet-content">
+			<h1>Journal</h1>
+			<% for entry in @entries %>
+				<p><%= entry.description %></p>
+			<% end %>
+			
+			<p><%= link_to "New Entry", new_entry_path %></p>
+		</div>
+	</div>
+     
+ 
+	<div class="clear"></div>
+		<!--THIS IS A WIDE PORTLET-->
+		<!--  END #PORTLETS -->  
+	</div>
+	<div class="clear"> </div>
+	<!-- END CONTENT-->    
+</div>
 
-<table>
-  <tr>
-    <th>Event</th>
-    <th>User</th>
-    <th>Description</th>
-  </tr>
-  <% for entry in @entries %>
-    <tr>
-      <td><%= entry.event_id %></td>
-      <td><%= entry.user_id %></td>
-      <td><%= entry.description %></td>
-      <td><%= link_to "Show", entry %></td>
-      <td><%= link_to "Edit", edit_entry_path(entry) %></td>
-      <td><%= link_to "Destroy", entry, :confirm => 'Are you sure?', :method => :delete %></td>
-    </tr>
-  <% end %>
-</table>
 
-<p><%= link_to "New Entry", new_entry_path %></p>

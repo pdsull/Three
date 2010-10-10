@@ -1,31 +1,25 @@
-<div id = "appLeftContent">
-	
-	<div id="starting_content">
-		<div id="recently_added">
-			<h2>Recently Added Events</h2>
-			<%= render :partial => 'recently_added' %>
-		</div>
-		
-		<div id="family_members">
-			<h2>Family Members</h2>
-			<div id="members_list">
-				<%= render :partial => 'members' %>
-			</div>
-			<%= render :partial => 'new_member'%>
+<!-- #PORTLETS START -->
+<div id="portlets">  
+	<!--THIS IS A PORTLET-->
+	<div class="portlet form" style="display: none">
+		<div class="portlet-content">
+			<%= render :partial => 'form' %>
+			
+			<p>&nbsp;</p>
 		</div>
 	</div>
-	
-	<div id="new_event">
-	</div>
-	
-	<div id="show_event">
-	</div>
-	
-	<div id="edit_event">
-	</div>
-	
-</div>
 
-<div id = "appRightContent">
-	<div id='calendar'></div>
+
+	<!--THIS IS A PORTLET-->        
+	<div class="portlet">
+		<div class="portlet-content">
+			<div id='calendar' style="width:auto"></div>
+		</div>
+	</div>    
+	<div class="clear"></div>
+		<!--THIS IS A WIDE PORTLET-->
+		<!--  END #PORTLETS -->  
+	</div>
+	<div class="clear"> </div>
+	<!-- END CONTENT-->    
 </div>

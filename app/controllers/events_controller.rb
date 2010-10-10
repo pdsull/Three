@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   
+  layout 'profi'
   before_filter :require_user
   
   # GET /events
@@ -7,11 +8,6 @@ class EventsController < ApplicationController
   def index
     @events = current_user.family.events
     @event = Event.new
-    @recent_events = Event.find(:all,
-                                :limit => 5,
-                                :order => "created_at DESC",
-                                :conditions => ["family_id = ?", current_user.family_id])
-
   end
 
   # GET /events/1
@@ -37,6 +33,12 @@ class EventsController < ApplicationController
     @event = Event.new(params[:event])
     @event.set_time
     @event.className = current_user.class_name
+    
+    @entry = Entry.new
+    @entry.description = @event.title
+    @entry.user_id = current_user.id
+    @entry.family_id = current_user.family.id
+    @entry.save
 
     respond_to do |format|
       if @event.save

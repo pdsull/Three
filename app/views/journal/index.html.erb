@@ -1,0 +1,30 @@
+<% title "Journal" %>
+
+<!-- #PORTLETS START -->
+<div id="portlets">  
+	<!--THIS IS A PORTLET-->
+	<div class="portlet">
+		<div class="portlet-content">
+			<h1><%= yield(:title) %></h1>
+			<% for entry in @entries %>
+				<h2><%= entry.description %></h2>
+					<ul>
+					<% entry.notes.each do |note| -%>
+						<li><%= note.description %></li>
+					<% end -%>
+					</ul>
+					<%= link_to "add note", {:action => :show, :id => entry.id} %>
+			<% end %>
+			
+
+		</div>
+	</div>
+     
+ 
+	<div class="clear"></div>
+		<!--THIS IS A WIDE PORTLET-->
+		<!--  END #PORTLETS -->  
+	</div>
+	<div class="clear"> </div>
+	<!-- END CONTENT-->    
+</div>

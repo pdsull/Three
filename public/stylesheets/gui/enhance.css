@@ -1,0 +1,26 @@
+.main blockquote { border-radius:8px; -moz-border-radius:8px;  -webkit-border-radius: 8px;  }
+
+ul#portfolio-filter a { border-top-left-radius: 4px; border-top-right-radius: 4px;  -moz-border-radius-topleft:4px; -webkit-border-top-left-radius:4px; -moz-border-radius-topright:4px; -webkit-border-top-right-radius:4px; }
+
+/* success box */
+.success { border-radius:8px; -moz-border-radius: 8px;  -webkit-border-radius: 8px; }
+
+ /* you have errors box */
+.errors { border-radius:8px;  -moz-border-radius: 8px;  -webkit-border-radius: 8px;  }
+
+/* notification box */
+.notification { border-radius:8px; -moz-border-radius: 8px;  -webkit-border-radius: 8px;  }
+
+.plan {  border-radius:10px;  -moz-border-radius: 10px; -webkit-border-radius: 10px; }
+.box {  border-radius:10px;  -moz-border-radius: 10px; -webkit-border-radius: 10px; }
+.box-top {  -moz-border-radius-topleft:10px;  -webkit-border-top-left-radius:10px; border-top-left-radius: 10px;  -moz-border-radius-topright:10px;  -webkit-border-top-right-radius:10px; border-top-right-radius: 10px; }
+.box-bottom {  -moz-border-radius-bottomleft:10px;  -webkit-border-bottom-left-radius:10px; border-bottom-left-radius: 10px; -moz-border-radius-bottomright:10px;  -webkit-border-bottom-right-radius:10px; border-bottom-right-radius: 10px;  }
+#searchform .field {   -moz-border-radius-bottomleft:5px;   -webkit-border-bottom-left-radius:5px;  -moz-border-radius-topleft:5px;  -webkit-border-top-left-radius:5px; border-top-left-radius: 5px; border-bottom-left-radius: 5px; }
+
+form input,
+form textarea,
+form select {	border-radius: 2px;	-moz-border-radius: 2px; 	-webkit-border-radius: 2px;	 }
+
+#contactForm ol.forms input,
+#contactForm ol.forms textarea,
+#contactForm ol.forms select { border-radius: 2px;	-moz-border-radius: 2px; -webkit-border-radius: 2px; }

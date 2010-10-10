@@ -1,0 +1,11 @@
+<%= form_for @new_note do |f| %>
+	<%= f.error_messages %>
+	<p>
+		<%= f.label :description, "Add New Note" %>
+		<%= f.text_area :description %>
+	</p>
+	<p>
+		<%= f.hidden_field :entry_id, :value => params[:id]%>
+		<%= f.submit %>
+	</p>
+<% end %>

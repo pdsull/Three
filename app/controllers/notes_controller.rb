@@ -1,6 +1,11 @@
 class NotesController < ApplicationController
 
   before_filter :require_user
+  layout "note"
+  
+  def index
+    
+  end
   
   def new
     @note = Note.new

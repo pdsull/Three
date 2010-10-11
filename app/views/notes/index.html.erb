@@ -12,40 +12,40 @@
 	
 <script type='text/javascript'>
 
-	$(document).ready(function() {
+		$(document).ready(function() {
 	
-		var date = new Date();
-		var d = date.getDate();
-		var m = date.getMonth();
-		var y = date.getFullYear();
+			var date = new Date();
+			var d = date.getDate();
+			var m = date.getMonth();
+			var y = date.getFullYear();
 		
-		$('#calendar').fullCalendar({
-			header: {
-				left: 'prev,next today',
-				center: 'title',
-				right: 'month,agendaWeek,agendaDay'
-			},
-			editable: true,
-			defaultView: 'agendaWeek',
-			height: 640,
-			slotMinutes:30,
-			events: "events/get_events",
+			$('#calendar').fullCalendar({
+				header: {
+					left: 'prev,next today',
+					center: 'title',
+					right: 'month,agendaWeek,agendaDay'
+				},
+				editable: true,
+				defaultView: 'agendaWeek',
+				height: 493,
+				slotMinutes:30,
+				events: "events/get_events",
 			
-			eventDrop: function(event, dayDelta, minuteDelta, allDay, reventFunc){
-				moveEvent(event, dayDelta, minuteDelta, allDay);
-			},
+				eventDrop: function(event, dayDelta, minuteDelta, allDay, reventFunc){
+					moveEvent(event, dayDelta, minuteDelta, allDay);
+				},
 			
-			eventResize: function(event, dayDelta, minuteDelta, revertFunc){
-				resizeEvent(event, dayDelta, minuteDelta);
-			},
+				eventResize: function(event, dayDelta, minuteDelta, revertFunc){
+					resizeEvent(event, dayDelta, minuteDelta);
+				},
 			
-			eventClick: function(event, jsEvent, view){
-				showEventDetails(event);
-			}
+				eventClick: function(event, jsEvent, view){
+					showEventDetails(event);
+				}
 			
+			});
+		
 		});
-		
-	});
 
 </script>
 <style type='text/css'>

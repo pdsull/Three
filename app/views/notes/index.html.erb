@@ -29,7 +29,20 @@
 			defaultView: 'agendaWeek',
 			height: 640,
 			slotMinutes:30,
-			events: "events/get_events"
+			events: "events/get_events",
+			
+			eventDrop: function(event, dayDelta, minuteDelta, allDay, reventFunc){
+				moveEvent(event, dayDelta, minuteDelta, allDay);
+			},
+			
+			eventResize: function(event, dayDelta, minuteDelta, revertFunc){
+				resizeEvent(event, dayDelta, minuteDelta);
+			},
+			
+			eventClick: function(event, jsEvent, view){
+				showEventDetails(event);
+			}
+			
 		});
 		
 	});
